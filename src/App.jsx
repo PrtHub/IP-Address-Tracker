@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 import arrow from "./images/icon-arrow.svg";
 import background from "./images/pattern-bg-desktop.png";
+import icon from "./components/Icon";
 
 const App = () => {
   const [address, setAddress] = useState({
@@ -161,7 +162,7 @@ const App = () => {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <Marker position={position}>
+          <Marker icon={icon} position={position}>
             <Popup>
               A pretty CSS3 popup. <br /> Easily customizable.
             </Popup>
