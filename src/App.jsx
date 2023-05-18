@@ -1,11 +1,11 @@
-import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
+
 import { useEffect, useState } from "react";
 
 import arrow from "./images/icon-arrow.svg";
 import background from "./images/pattern-bg-desktop.png";
-import icon from "./components/Icon";
 import Map from "./components/Map";
+import MapSection from "./components/MapSection";
+
 
 const App = () => {
   const [address, setAddress] = useState({
@@ -38,28 +38,6 @@ const App = () => {
       console.log(error);
     }
   }, []);
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const position = [address?.location?.lat, address?.location?.lng];
-
-  const FlyTo = ({ position }) => {
-    const map = useMap();
-
-    useEffect(() => {
-      if (
-        position &&
-        position.length === 2 &&
-        !isNaN(position[0]) &&
-        !isNaN(position[1])
-      ) {
-        map.flyTo(position, 13, {
-          animate: true,
-        });
-      }
-    }, [map, position]);
-
-    return null;
-  };
 
   const getChangeAddress = async () => {
     const res = await fetch(
@@ -123,23 +101,7 @@ const App = () => {
       <div className="relative w-full h-[500px]">
         <Map address={address}/>
 
-        <MapContainer
-          center={position}
-          zoom={13}
-          scrollWheelZoom={false}
-          style={{ height: "100%", width: "100%", zIndex: 0 }}
-        >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          <Marker icon={icon} position={position}>
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
-          </Marker>
-          {position && <FlyTo position={position} />}
-        </MapContainer>
+       <MapSection address={address}/>
       </div>
     </>
   );
