@@ -1,11 +1,9 @@
-
 import { useEffect, useState } from "react";
 
 import arrow from "./images/icon-arrow.svg";
 import background from "./images/pattern-bg-desktop.png";
 import Map from "./components/Map";
 import MapSection from "./components/MapSection";
-
 
 const App = () => {
   const [address, setAddress] = useState({
@@ -99,9 +97,9 @@ const App = () => {
 
       {/* Map  */}
       <div className="relative w-full h-[500px]">
-        <Map address={address}/>
+        <Map address={address} />
 
-       <MapSection address={address}/>
+        <MapSection address={address} />
       </div>
     </>
   );
