@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import L from "leaflet"
 import icon from '../images/icon-location.svg'
 
